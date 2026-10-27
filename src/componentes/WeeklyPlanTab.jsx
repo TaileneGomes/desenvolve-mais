@@ -1,20 +1,9 @@
 import { WEEKLY_PLAN } from "../conteudo/planoSemanal.js";
-import { faixaInfantilFromMeses } from "../util.js";
 import { styles } from "../estilos.js";
 
-export default function WeeklyPlanTab({ meses }) {
-  const faixa = faixaInfantilFromMeses(meses);
-  // O material agrupa "4 a 5 anos" num só plano; "por volta dos 5 anos" usa o mesmo.
-  const planoKey = faixa ? (faixa.key === "5a" ? "4-5a" : faixa.key) : null;
-  const plano = planoKey ? WEEKLY_PLAN[planoKey] : null;
-
-  if (!plano) {
-    return (
-      <div style={styles.emptyState}>
-        Não há plano semanal de brincadeiras para a faixa "{faixa ? faixa.label : "—"}" no material de referência — ele cobre apenas 6 a 11 meses, 2 a 3 anos e 4 a 5 anos. Use a aba "Marcos de desenvolvimento" para esta idade.
-      </div>
-    );
-  }
+export default function WeeklyPlanTab({ planoKey }) {
+  const plano = WEEKLY_PLAN[planoKey];
+  if (!plano) return null; // não ocorre: o seletor só oferece faixas com plano
 
   return (
     <div style={{ marginTop: 16 }}>

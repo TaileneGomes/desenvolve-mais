@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FONTS, styles } from "./estilos.js";
 import { DEV_TABLE } from "./conteudo/marcos.js";
+import { PLANO_OPCOES } from "./conteudo/planoSemanal.js";
 import { LINGUAGEM_CONCEITOS } from "./conteudo/linguagem.js";
 import DevelopmentTab from "./componentes/DevelopmentTab.jsx";
 import WeeklyPlanTab from "./componentes/WeeklyPlanTab.jsx";
@@ -12,6 +13,8 @@ export default function App() {
   const [faixaKey, setFaixaKey] = useState("6-11m");
   const faixa = DEV_TABLE.find(f => f.key === faixaKey) || DEV_TABLE[0];
   const meses = faixa.minMeses;
+  // Aba de atividades tem seletor próprio: só as 3 faixas que possuem plano.
+  const [planoKey, setPlanoKey] = useState(PLANO_OPCOES[0].key);
 
   const nav = [
     { key: "conceito", label: "Conceito de linguagem", icon: "🗣️" },
@@ -66,11 +69,10 @@ export default function App() {
 
           {view === "atividades" && <div>
             <label style={styles.label} htmlFor="faixa-atividades">Selecione a faixa etária</label>
-            <select id="faixa-atividades" style={{ ...styles.input, maxWidth: 360, marginBottom: 16 }} value={faixaKey} onChange={e => setFaixaKey(e.target.value)}>
-              {DEV_TABLE.map(f => <option key={f.key} value={f.key}>{f.label}</option>)}
+            <select id="faixa-atividades" style={{ ...styles.input, maxWidth: 360, marginBottom: 16 }} value={planoKey} onChange={e => setPlanoKey(e.target.value)}>
+              {PLANO_OPCOES.map(f => <option key={f.key} value={f.key}>{f.label}</option>)}
             </select>
-            <WeeklyPlanTab meses={meses} />
-            <div style={styles.fonteBox}>As atividades semanais disponíveis nesta versão refletem o material atualmente incluído no protótipo. Algumas faixas etárias ainda não têm plano semanal nesse material; não inventamos atividades para preencher essas lacunas.</div>
+            <WeeklyPlanTab planoKey={planoKey} />
           </div>}
 
           {view === "feedback" && <FeedbackPage />}

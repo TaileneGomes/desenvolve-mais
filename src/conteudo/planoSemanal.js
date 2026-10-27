@@ -1,6 +1,7 @@
-// Plano semanal — cobre só 3 dos 6 grupos etários da tabela (6-11m, 2-3a, 4-5a).
-// Lacuna real do material-fonte: não há plano lúdico para 1-2 anos nem 3-4 anos.
-// Sinalizado na interface em vez de "preenchido" artificialmente.
+// Plano semanal — 3 faixas, todas com 5 atividades (segunda a sexta):
+// 6 meses a 1 ano, 2 a 3 anos e 4 a 5 anos (definição da Diessica, 26/10).
+// O seletor da aba "Atividades da semana" usa PLANO_OPCOES, então nenhuma
+// faixa listada fica sem atividade. Os Marcos continuam com as 6 faixas da tabela.
 export const WEEKLY_PLAN = {
   "6-11m": {
     titulo: "Bebês de 6 meses a 1 ano",
@@ -46,3 +47,10 @@ export const WEEKLY_PLAN = {
 // Duração do cronômetro = limite superior da faixa sugerida no material
 // (5-10, 10-15, 15-25 min). É referência flexível.
 export const PLANO_MINUTOS = { "6-11m": 10, "2-3a": 15, "4-5a": 25 };
+
+// Opções do seletor da aba "Atividades da semana" (ordem de exibição).
+export const PLANO_OPCOES = [
+  { key: "6-11m", label: "6 meses a 1 ano" },
+  { key: "2-3a", label: "2 a 3 anos" },
+  { key: "4-5a", label: "4 a 5 anos" },
+];

@@ -6,6 +6,7 @@ import { LINGUAGEM_CONCEITOS } from "./conteudo/linguagem.js";
 import DevelopmentTab from "./componentes/DevelopmentTab.jsx";
 import WeeklyPlanTab from "./componentes/WeeklyPlanTab.jsx";
 import FeedbackPage from "./views/FeedbackPage.jsx";
+import Admin from "./Admin.jsx";
 
 // Navegação e telas de consulta. Texto das telas mantido como no código enviado.
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
     { key: "marcos", label: "Marcos do desenvolvimento", icon: "🌱" },
     { key: "atividades", label: "Atividades da semana", icon: "🎲" },
     { key: "feedback", label: "Feedback", icon: "💬" },
+    { key: "admin", label: "Admin", icon: "🔐" },
   ];
 
   return (
@@ -76,6 +78,10 @@ export default function App() {
           </div>}
 
           {view === "feedback" && <FeedbackPage />}
+          {view === "admin" && (<Admin onVoltar={() => setView("conceito")} />
+)}
+
+            
         </main>
       </div>
       <footer style={styles.disclaimer}>Desenvolve+ · Apoio à consulta pedagógica sobre linguagem e desenvolvimento infantil.<div style={{ marginTop: 4 }}>Desenvolvimento do aplicativo: Tailene Gomes.</div></footer>

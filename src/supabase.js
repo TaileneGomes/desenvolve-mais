@@ -16,5 +16,5 @@ const CHAVE = env.VITE_SUPABASE_PUBLISHABLE_KEY || PADRAO_CHAVE;
 
 // Sem sessão de login: o app é anônimo e só INSERE feedbacks.
 export const supabase = createClient(SUPABASE_URL, CHAVE, {
-  auth: { persistSession: false, autoRefreshToken: false },
+  auth: { persistSession: true, autoRefreshToken: true },
 });
